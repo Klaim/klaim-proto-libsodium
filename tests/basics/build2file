@@ -1,0 +1,3 @@
+import libs = libsodium%lib{sodium}
+
+exe{driver}: {h c}{**} $libs testscript{**}

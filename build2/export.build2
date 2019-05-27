@@ -1,0 +1,6 @@
+$out_root/
+{
+  include libsodium/
+}
+
+export $out_root/libsodium/$import.target
