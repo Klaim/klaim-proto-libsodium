@@ -2,36 +2,36 @@ int_libs = # Interface dependencies.
 imp_libs = # Implementation dependencies.
 #import imp_libs += libhello%lib{hello}
 
-lib{sodium}: {h c}{** -version} h{version} $imp_libs $int_libs
+include_dir = origin/src/libsodium/include
 
-# Include the generated version header into the distribution (so that we don't
-# pick up an installed one) and don't remove it when cleaning in src (so that
-# clean results in a state identical to distributed).
-#
-h{version}: in{version} $src_root/manifest
-h{version}:
-{
-  dist  = true
-  clean = ($src_root != $out_root)
-}
+lib{sodium}: origin/src/libsodium/{h c}{crypto_*/**} \
+             $include_dir/h{**} \
+             origin/src/sodium/c{**} \
+             origin/src/libsodium/sodium/c{**} \
+             origin/src/libsodium/randombytes/c{**} \
+             origin/builds/msvc/h{version} # this version file is not specific to msvc apparently
+lib{sodium}: $imp_libs $int_libs
+
 
 # Build options.
 #
-c.poptions =+ "-I$out_root" "-I$src_root"
+c.poptions =+ "-I$out_root" "-I$src_root" "-I$src_base/$include_dir"
+c.poptions =+ "-I$src_base/$include_dir/sodium" "-I$src_base/origin/builds/msvc"
+c.poptions =+
 
-obja{*}: c.poptions += -DLIBSODIUM_STATIC_BUILD
-objs{*}: c.poptions += -DLIBSODIUM_SHARED_BUILD
+obja{*}: c.poptions += -DSODIUM_STATIC
+objs{*}: c.poptions += -DSODIUM_DLL_EXPORT
 
 # Export options.
 #
 lib{sodium}:
 {
-  c.export.poptions = "-I$out_root" "-I$src_root"
+  c.export.poptions = "-I$out_root" "-I$src_base/$include_dir" "-I$src_base/origin/builds/msvc"
   c.export.libs = $int_libs
 }
 
-liba{sodium}: c.export.poptions += -DLIBSODIUM_STATIC
-libs{sodium}: c.export.poptions += -DLIBSODIUM_SHARED
+#liba{sodium}: c.export.poptions += -DLIBSODIUM_STATIC
+libs{sodium}: c.export.poptions += -DSODIUM_EXPORT
 
 # For pre-releases use the complete version to make sure they cannot be used
 # in place of another pre-release or the final version. See the version module
@@ -49,4 +49,10 @@ else
 {
   install         = include/libsodium/
   install.subdirs = true
+}
+
+h{version}@origin/builds/msvc/ :
+{
+  install = include/sodium/
+  install.subdirs= false
 }
