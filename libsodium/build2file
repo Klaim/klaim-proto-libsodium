@@ -4,12 +4,9 @@ imp_libs = # Implementation dependencies.
 
 include_dir = origin/src/libsodium/include
 
-lib{sodium}: origin/src/libsodium/{h c}{crypto_*/**} \
-             $include_dir/h{**} \
-             origin/src/sodium/c{**} \
-             origin/src/libsodium/sodium/c{**} \
-             origin/src/libsodium/randombytes/c{**} \
-             origin/builds/msvc/h{version} # this version file is not specific to msvc apparently
+lib{sodium}: origin/src/libsodium/{h c}{crypto_*/**}  $include_dir/h{**}
+lib{sodium}: origin/src/sodium/c{**} origin/src/libsodium/sodium/c{**} origin/src/libsodium/randombytes/c{**}
+lib{sodium}: origin/builds/msvc/h{version} # this version file is not specific to msvc apparently
 lib{sodium}: $imp_libs $int_libs
 
 
@@ -17,7 +14,6 @@ lib{sodium}: $imp_libs $int_libs
 #
 c.poptions =+ "-I$out_root" "-I$src_root" "-I$src_base/$include_dir"
 c.poptions =+ "-I$src_base/$include_dir/sodium" "-I$src_base/origin/builds/msvc"
-c.poptions =+
 
 obja{*}: c.poptions += -DSODIUM_STATIC
 objs{*}: c.poptions += -DSODIUM_DLL_EXPORT
@@ -45,14 +41,20 @@ else
 # Install into the libsodium/ subdirectory of, say, /usr/include/
 # recreating subdirectories.
 #
-{h}{*}:
+
+origin/src/libsodium/h{**}:
 {
-  install         = include/libsodium/
+  install = false
+}
+
+origin/src/libsodium/include/h{**}:
+{
+  install         = include/
   install.subdirs = true
 }
 
-h{version}@origin/builds/msvc/ :
+origin/builds/msvc/h{*} :
 {
-  install = include/sodium/
-  install.subdirs= false
+  install         = include/sodium/
+  install.subdirs = false
 }
