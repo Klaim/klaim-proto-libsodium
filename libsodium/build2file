@@ -12,6 +12,12 @@ lib{sodium}: $imp_libs $int_libs
 
 # Build options.
 #
+
+if ($c.target.class != 'windows')
+{
+  c.coptions += -fPIC
+}
+
 c.poptions =+ "-I$out_root" "-I$src_root" "-I$src_base/$include_dir"
 c.poptions =+ "-I$src_base/$include_dir/sodium" "-I$src_base/origin/builds/msvc"
 
