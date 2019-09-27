@@ -55,7 +55,7 @@ lib{sodium}:
 }
 
 liba{sodium}: c.export.poptions += -DSODIUM_STATIC
-libs{sodium}: c.export.poptions += -DSODIUM_DLL_EXPORT
+# libs{sodium}: c.export.poptions += -DSODIUM_EXPORT
 
 # For pre-releases use the complete version to make sure they cannot be used
 # in place of another pre-release or the final version. See the version module
