@@ -116,7 +116,7 @@ for test_name : $TESTS_TARGETS
                     $src_root/libsodium/origin/test/default/h{*}
 }
 
-$src_root/libsodium/origin/test/quirks/h{*} :
+h{$src_root/libsodium/origin/test/quirks/*} :
 {
-  dist = true
+    dist = true
 }
