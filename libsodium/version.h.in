@@ -13,21 +13,21 @@
 // Version      AAAAABBBBBCCCCCDDDE
 //
 // 0.1.0        0000000001000000000
-// 0.1.2        0000000001000020000
+// 0.1.2        0000000001000020000x
 // 1.2.3        0000100002000030000
 // 2.2.0-a.1    0000200001999990010
 // 3.0.0-b.2    0000299999999995020
 // 2.2.0-a.1.z  0000200001999990011
 //
-#define LIBSODIUM_VERSION       $libsodium.version.project_number$ULL
-#define LIBSODIUM_VERSION_STR   "$libsodium.version.project$"
-#define LIBSODIUM_VERSION_ID    "$libsodium.version.project_id$"
+#define SODIUM_VERSION       $libsodium.version.project_number$ULL
+#define SODIUM_VERSION_STRING   "$libsodium.version.project$"
+#define SODIUM_VERSION_ID    "$libsodium.version.project_id$"
 
-#define LIBSODIUM_VERSION_MAJOR $libsodium.version.major$
-#define LIBSODIUM_VERSION_MINOR $libsodium.version.minor$
-#define LIBSODIUM_VERSION_PATCH $libsodium.version.patch$
+#define SODIUM_LIBRARY_VERSION_MAJOR $libsodium.version.major$
+#define SODIUM_LIBRARY_VERSION_MINOR $libsodium.version.minor$
+#define SODIUM_LIBRARY_VERSION_PATCH $libsodium.version.patch$
 
-#define LIBSODIUM_PRE_RELEASE   $libsodium.version.pre_release$
+#define SODIUM_PRE_RELEASE   $libsodium.version.pre_release$
 
-#define LIBSODIUM_SNAPSHOT_SN   $libsodium.version.snapshot_sn$ULL
-#define LIBSODIUM_SNAPSHOT_ID   "$libsodium.version.snapshot_id$"
+#define SODIUM_SNAPSHOT_SN   $libsodium.version.snapshot_sn$ULL
+#define SODIUM_SNAPSHOT_ID   "$libsodium.version.snapshot_id$"
