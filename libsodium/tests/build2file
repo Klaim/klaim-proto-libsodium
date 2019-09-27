@@ -85,6 +85,8 @@ TESTS_TARGETS = \
 
 ../origin/test/default/ # Necessary to apply these options to the files in this directory
 {
+  include ../../../
+
   test_dir = "$src_root/libsodium/origin/test/default"
 
   # From makefile
@@ -98,8 +100,7 @@ TESTS_TARGETS = \
     "-I$src_root/libsodium/origin/src/libsodium/include/sodium" \
     "-I$out_root/libsodium/origin/src/libsodium/include" \
     "-I$out_root/libsodium/origin/src/libsodium/include/sodium" \
-    "-I$src_root/libsodium/origin/test/quirks" \
-    "-I\"$TEST_SRCDIR\""
+    "-I$src_root/libsodium/origin/test/quirks"
 
   # info "AM_CPPFLAGS = "
   # for value : $AM_CPPFLAGS
