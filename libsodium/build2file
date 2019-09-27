@@ -15,7 +15,7 @@ lib{sodium}: $imp_libs $int_libs
 # Include the generated version header into the distribution (so that we don't
 # pick up an installed one) and don't remove it when cleaning in src (so that
 # clean results in a state identical to distributed).
-$include_dir/sodium/h{version} : in{version}  $src_root/manifest
+$include_dir/sodium/h{version} : in{origin/builds/msvc/version.h}  $src_root/manifest # just copy the one in msvc
 {
   dist  = true
   clean = ($src_root != $out_root)
