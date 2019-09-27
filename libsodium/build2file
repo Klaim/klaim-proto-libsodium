@@ -6,10 +6,11 @@ imp_libs = # Implementation dependencies.
 
 include_dir = origin/src/libsodium/include
 
+./ : lib{sodium}
 lib{sodium}: origin/src/libsodium/{h c}{crypto_*/**}  $include_dir/h{**}
 lib{sodium}: origin/src/sodium/c{**} origin/src/libsodium/sodium/c{**}
 lib{sodium}: origin/src/libsodium/randombytes/c{*} origin/src/libsodium/randombytes/salsa20/c{**}
-lib{sodium}: $include_dir/sodium/h{version}
+lib{sodium}: origin/src/libsodium/include/sodium/h{version}
 lib{sodium}: origin/builds/msvc/h{version} # this version file is not specific to msvc apparently
 lib{sodium}: $imp_libs $int_libs
 
@@ -26,7 +27,7 @@ lib{sodium}: $imp_libs $int_libs
 # Include the generated version header into the distribution (so that we don't
 # pick up an installed one) and don't remove it when cleaning in src (so that
 # clean results in a state identical to distributed).
-$include_dir/sodium/h{version} : in{origin/builds/msvc/version.h}  $src_root/manifest # just copy the one in msvc
+origin/src/libsodium/include/sodium/h{version} : in{origin/builds/msvc/version.h} $src_root/manifest # just copy the one in msvc
 {
   dist  = true
   clean = ($src_root != $out_root)
