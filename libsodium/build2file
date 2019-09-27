@@ -7,10 +7,21 @@ imp_libs = # Implementation dependencies.
 include_dir = origin/src/libsodium/include
 
 lib{sodium}: origin/src/libsodium/{h c}{crypto_*/**}  $include_dir/h{**}
-lib{sodium}: origin/src/sodium/c{**} origin/src/libsodium/sodium/c{**} origin/src/libsodium/randombytes/c{**}
+lib{sodium}: origin/src/sodium/c{**} origin/src/libsodium/sodium/c{**}
+lib{sodium}: origin/src/libsodium/randombytes/c{*} origin/src/libsodium/randombytes/salsa20/c{**}
 lib{sodium}: $include_dir/sodium/h{version}
 lib{sodium}: origin/builds/msvc/h{version} # this version file is not specific to msvc apparently
 lib{sodium}: $imp_libs $int_libs
+
+# From the makefile # TODO: support nativeclient (or decide not to support it)
+#if NATIVECLIENT
+#libsodium_la_SOURCES += \
+#  lib{sodium}: origin/src/libsodium/randombytes/nativeclient/c{randombytes_nativeclient}
+#else
+#libsodium_la_SOURCES += \
+  lib{sodium}: origin/src/libsodium/randombytes/sysrandom/c{randombytes_sysrandom}
+#endif
+
 
 # Include the generated version header into the distribution (so that we don't
 # pick up an installed one) and don't remove it when cleaning in src (so that
