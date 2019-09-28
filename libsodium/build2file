@@ -55,8 +55,8 @@ user_export ="-I$out_root" "-I$out_base/$include_dir" \
 
 lib{sodium}:
 {
-  c.export.poptions = $user_export
-  c.export.libs = $int_libs
+  cc.export.poptions = $user_export
+  cc.export.libs = $int_libs
 }
 
 liba{sodium}: cc.export.poptions += -DSODIUM_STATIC
