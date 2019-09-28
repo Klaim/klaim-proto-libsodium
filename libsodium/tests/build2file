@@ -114,7 +114,9 @@ for test_name : $TESTS_TARGETS
   ./ : exe{$test_name} : ../lib{sodium}
   exe{$test_name} : ../origin/test/default/c{$test_name} \
                     ../origin/test/default/h{*} \
+                    ../origin/test/default/file{*.exp} \
                     ../origin/test/quirks/h{quirks}
+
 }
 
 $src_root/libsodium/origin/test/quirks/h{quirks} : dist = true
