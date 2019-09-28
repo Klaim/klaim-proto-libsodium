@@ -38,6 +38,7 @@ origin/src/libsodium/include/sodium/h{version} : in{origin/builds/msvc/version.h
 if ($c.target.class != 'windows')
 {
   c.coptions += -fPIC
+  c.poptions += -DCONFIGURED # See configure.ac in upstream repo.
 }
 
 c.poptions =+ "-I$out_root" "-I$src_root" "-I$src_base/$include_dir"
