@@ -8,5 +8,5 @@ url: https://example.org/libsodium
 email: jlamotte@softbankrobotics.com
 depends: * build2 >= 0.10.0
 depends: * bpkg >= 0.10.0
-builds: -gcc-9 ; TODO: remove this line once gcc-9 symbol issues are fixed.
+builds: -gcc-9+ ; TODO: remove this line once gcc-9 symbol issues are fixed.
 
