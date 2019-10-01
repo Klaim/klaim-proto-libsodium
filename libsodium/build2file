@@ -41,16 +41,15 @@ if ($c.target.class != 'windows')
   c.poptions += -DCONFIGURED # See configure.ac in upstream repo.
 }
 
-c.poptions =+ "-I$out_root" "-I$src_root" "-I$src_base/$include_dir"
-c.poptions =+ "-I$src_base/$include_dir/sodium" "-I$src_base/origin/builds/msvc"
+c.poptions =+ "-I$out_base/$include_dir/sodium" "-I$out_base/$include_dir"
+c.poptions =+ "-I$src_base/$include_dir/sodium" "-I$src_base/$include_dir"
 
 obja{*}: c.poptions += -DSODIUM_STATIC
 objs{*}: c.poptions += -DSODIUM_DLL_EXPORT
 
 # Export options.
 #
-user_export ="-I$out_root" "-I$out_base/$include_dir" \
-            "-I$src_base/$include_dir" "-I$src_base/$include_dir/sodium"
+user_export = "-I$out_base/$include_dir" "-I$src_base/$include_dir" "-I$src_base/$include_dir/sodium"
 # for export : $user_export
 #  info "export : $export "
 
