@@ -20,3 +20,6 @@
 *.exe.manifest
 *.pc
 .vscode
+
+# Tests output
+*.res
