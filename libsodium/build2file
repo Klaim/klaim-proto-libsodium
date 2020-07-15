@@ -39,7 +39,17 @@ if ($c.target.class != 'windows')
 {
   c.coptions += -fPIC
   c.poptions += -DCONFIGURED # See configure.ac in upstream repo.
+
 }
+else
+{
+  if($c != 'msvc')
+  {
+    info "Compiling with non-MSVC on Windows"
+    c.poptions += -mmmx -msse2 -msse3 -mssse3 -msse4.1 -mavx -mavx2 -mavx512f -maes -mpclmul -mrdrnd # See configure.ac in upstream repo.
+  }
+}
+
 
 c.poptions =+ "-I$out_base/$include_dir/sodium" "-I$out_base/$include_dir"
 c.poptions =+ "-I$src_base/$include_dir/sodium" "-I$src_base/$include_dir"
