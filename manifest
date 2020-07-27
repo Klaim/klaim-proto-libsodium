@@ -1,6 +1,6 @@
 : 1
 name: libsodium
-version: 1.0.17+4
+version: 1.0.17+5
 summary: Klaim's prototyping libsodium package, don't use this!
 license: proprietary
 description-file: README.md

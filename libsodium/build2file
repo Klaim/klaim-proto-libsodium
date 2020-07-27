@@ -45,7 +45,7 @@ else
 {
   if($c != 'msvc')
   {
-    info "Compiling with non-MSVC on Windows"
+    # info "Compiling with non-MSVC on Windows"
     c.poptions +=   -mavx -mavx2  -maes -mpclmul # -mssse3 -msse4.1 -msse2 -msse3 -mmmx -mrdrnd # -mavx512f   # See configure.ac in upstream repo.
   }
 }
